@@ -77,7 +77,9 @@ EXPOSE 389
 
 VOLUME ["/usr/local/etc/openldap", "/usr/local/var/openldap-data"]
 
-COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /sbin/docker-entrypoint.sh
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+RUN chmod 755 /sbin/docker-entrypoint.sh
+
+ENTRYPOINT ["/sbin/docker-entrypoint.sh"]
 
