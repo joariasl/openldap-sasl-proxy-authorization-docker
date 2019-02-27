@@ -28,8 +28,7 @@ sed -i -E 's|^(ldap_servers:[[:blank:]]*).*|\1'"$LDAP_SERVERS"'|' /etc/saslauthd
   && sed -i -E 's/^(ldap_password:[[:blank:]]*).*/\1'"$LDAP_PASSWORD"'/' /etc/saslauthd.conf
 
 # If initial configuration and database does not exists in volumes
-slaptest -f /usr/local/var/openldap-data/DB_CONFIG
-if [ $? != 0 ]
+if [ ! -f /usr/local/var/openldap-data/DB_CONFIG ]
 then
   echo "Creating initial database..."
   cp /opt/openldap-init/DB_CONFIG.example /usr/local/var/openldap-data/DB_CONFIG
