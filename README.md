@@ -1,15 +1,5 @@
 # openldap-sasl-proxy-authorization-docker
 
-## Example for build your own container with OpenLDAP Pass-Through proxy authentication with SASL from Dockerfile
-```sh
-docker build -t openldap \
---build-arg LDAP_DN_BASE="MAIN_SERVER_DN_BASE" \
---build-arg LDAP_ORGANIZATION="ORGANIZATION_NAME_FOR_FIRST_OU" \
---build-arg LDAP_ROOT_DN="MANAGER_USER" \
---build-arg LDAP_ROOT_PW="TEXT_PLAIN_PASSWORD OR \{SSHA\}SSHA_GENERATED_CODE_PASSWORD" \
-.
-```
-
 ## Running with SASL configuration
 ```
 docker run -d --name openldap -p 389:389 \
