@@ -23,15 +23,14 @@ COPY assets/saslauthd.conf /etc/saslauthd.conf
 
 RUN curl -LJO http://mirror.eu.oneandone.net/software/openldap/openldap-release/openldap-${OPENLDAP_VERSION}.tgz \
   && gunzip -c openldap-${OPENLDAP_VERSION}.tgz | tar xf - \
-  && rm openldap-${OPENLDAP_VERSION}.tgz
-
-WORKDIR /openldap-${OPENLDAP_VERSION}
-
-RUN ./configure --enable-spasswd --with-cyrus-sasl --enable-memberof \
+  && rm openldap-${OPENLDAP_VERSION}.tgz \
+  && cd /openldap-${OPENLDAP_VERSION} \
+  && ./configure --enable-spasswd --with-cyrus-sasl --enable-memberof \
   && make depend \
   && make \
   && make install \
-  && make clean
+  && make clean \
+  && rm -rf /openldap-${OPENLDAP_VERSION}
 
 RUN mkdir /opt/openldap-init \
   && cp /usr/local/var/openldap-data/DB_CONFIG.example /opt/openldap-init/
