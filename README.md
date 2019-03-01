@@ -31,7 +31,6 @@ docker run -d --name openldap -p 389:389 \
 -e LDAP_FILTER='(sAMAccountName=%U)' \
 -e LDAP_BIND_DN='CN=Administrator,CN=Users,DC=example,DC=com' \
 -e LDAP_PASSWORD='ADpassword' \
--v openldap-conf:/usr/local/etc/openldap \
 -v openldap-data:/usr/local/var/openldap-data \
 openldap
 ```
